@@ -1,0 +1,60 @@
+﻿@model IEnumerable<AppFuncional.Models.Aluno>
+
+@{
+    ViewData["Title"] = "Listagem de Alunos";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <a asp-action="Create" class="btn btn-primary"><span class="fa fa-plus"></span> Cadastrar Alunos</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataNascimento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Avaliacao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ativo)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @item.DataNascimento.ToString("dd/MM/yyyy")
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Avaliacao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ativo)
+            </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-warning"><span class="fa fa-search"> </span></a>
+                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-info"><span class="fa fa-pencil-alt"> </span></a>
+                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger"><span class="fa fa-trash"> </span></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
